@@ -3,12 +3,12 @@
 }
 
 header {
-  background-color: purple;
+  background-color: rgba(124, 5, 124, 0.336);
   height: 75px;
 }
 
 h1 {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 main {
