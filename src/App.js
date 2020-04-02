@@ -18,23 +18,6 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch(`https://rawg-video-games-database.p.rapidapi.com/games`, {
-      method: 'GET',
-      headers: {
-          'content-type': 'application/json',
-          "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-	        "x-rapidapi-key": "456efb0483msh86ebfface36e894p1cb243jsn4beee219a6e0"
-      },
-  })
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })
-  }
-
   render() {
     return (
       <>
