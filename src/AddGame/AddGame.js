@@ -36,22 +36,21 @@ class AddGame extends Component {
     })
   }
 
-  onTextChanged = (e) => {
-    const value = e.target.value
-    this.setState({
-      text: value
-    })
-    if (this.state.text.length > 2) {
-      this.searchGames()
-    }
+  onTextChanged(text){
+    this.setState({text: text})
   }
 
-  suggestionSelected(value) {
-    this.setState({
-      text: value,
-      suggestions: []
-    })
-  }
+  handleSubmit(e) {
+    e.preventDefault();
+    this.searchGames()
+}
+
+  // suggestionSelected(value) {
+  //   this.setState({
+  //     text: value,
+  //     suggestions: []
+  //   })
+  // }
 
   renderSuggestions() {
     const { suggestions } = this.state
@@ -66,12 +65,15 @@ class AddGame extends Component {
   }
 
   render() {
-    console.log(this.state.suggestions)
-    const { text } = this.state
     return (
       <>
         <h1>Add Game</h1>
-        <input value={text} onChange={this.onTextChanged} type="text" />
+        <form className="addEntry" onSubmit={e => this.handleSubmit(e)}>
+          <input required type="text" onChange={e => this.onTextChanged(e.target.value)} />
+          <button type="submit">
+            Add
+          </button>
+        </form>
         {this.renderSuggestions()}
       </>
     );
