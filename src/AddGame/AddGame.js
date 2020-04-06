@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import Game from '../Game/Game'
 import './AddGame.css'
 
 class AddGame extends Component {
@@ -23,18 +24,18 @@ class AddGame extends Component {
       return response.json();
     })
     .then((data) => {
-      console.log(data)
-      this.getNames(data)
+      this.setState({ suggestions: data.results })
+      // this.getNames(data)
     })
   }
 
-  getNames(data) {
-    let gameNames = []
-    data.results.map((item) => gameNames.push(item.name))
-    this.setState({
-      suggestions: gameNames
-    })
-  }
+  // getNames(data) {
+  //   let gameNames = []
+  //   data.results.map((item) => gameNames.push(item.name))
+  //   this.setState({
+  //     suggestions: gameNames
+  //   })
+  // }
 
   onTextChanged(text){
     this.setState({text: text})
@@ -56,15 +57,17 @@ class AddGame extends Component {
     const { suggestions } = this.state
     if (suggestions.length === 0) {
       return null
+    } else {
+      return (
+        <ul>
+          {suggestions.map((item) => <li key={item.id}><Game game={item} /></li>)}
+        </ul>
+      )
     }
-    return (
-      <ul>
-        {suggestions.map((item) => <li onClick={() => this.suggestionSelected(item)}>{item}</li>)}
-      </ul>
-    )
   }
 
   render() {
+    // console.log(this.state)
     return (
       <>
         <h1>Add Game</h1>

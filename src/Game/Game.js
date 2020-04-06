@@ -10,9 +10,17 @@ class Game extends Component {
   }
 
   render() {
+    console.log(this.props)
+    const { game } = this.props
     return (
       <>
-        <h1>Game</h1>
+        <div className='card'>
+            <img src={game.background_image} alt={'game'}   />
+            <div class="container">
+                <h4><b>{game.name}</b></h4>
+                <p>{game.released}</p>
+            </div>
+        </div>
       </>
     );
   }
