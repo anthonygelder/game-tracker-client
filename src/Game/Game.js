@@ -14,12 +14,12 @@ class Game extends Component {
     const { game } = this.props
     return (
       <>
-        <div className='card'>
-            <img src={game.background_image} alt={'game'}   />
-            <div class="container">
-                <h4><b>{game.name}</b></h4>
-                <p>{game.released}</p>
+        <div class="container">
+            <div className='card'>
+                <img src={game.background_image} alt={'game'} className='cardImg' />
             </div>
+            <h6><b>{game.name}</b></h6>
+            <p>{game.released}</p>
         </div>
       </>
     );

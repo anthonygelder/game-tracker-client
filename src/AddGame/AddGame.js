@@ -59,9 +59,9 @@ class AddGame extends Component {
       return null
     } else {
       return (
-        <ul>
-          {suggestions.map((item) => <li key={item.id}><Game game={item} /></li>)}
-        </ul>
+        <>
+          {suggestions.map((item) => <Game game={item} key={item.id} />)}
+        </>
       )
     }
   }
@@ -77,7 +77,9 @@ class AddGame extends Component {
             Add
           </button>
         </form>
-        {this.renderSuggestions()}
+        <div className="games">
+          {this.renderSuggestions()}
+        </div>
       </>
     );
   }
