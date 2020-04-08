@@ -6,7 +6,7 @@ class AddGame extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      games: [],
+      game: {},
       suggestions: [],
       text: ''
     }
@@ -53,6 +53,14 @@ class AddGame extends Component {
   //   })
   // }
 
+  selectGame = (game) => {
+    console.log("hello",game)
+    // this.setState({
+    //   game: game,
+    //   text: game.
+    // })
+  }
+
   renderSuggestions() {
     const { suggestions } = this.state
     if (suggestions.length === 0) {
@@ -60,7 +68,7 @@ class AddGame extends Component {
     } else {
       return (
         <>
-          {suggestions.map((item) => <Game game={item} key={item.id} />)}
+          {suggestions.map((item) => <Game game={item} key={item.id} selectGame={this.selectGame}/>)}
         </>
       )
     }
