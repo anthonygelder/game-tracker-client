@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Landing.css'
+import { Link } from 'react-router-dom'
 
 class Landing extends Component {
   constructor(props) {
@@ -13,6 +14,11 @@ class Landing extends Component {
     return (
       <>
         <h1>Landing</h1>
+        <Link to='/games'>
+          <button>
+            View Games
+          </button>
+        </Link>
       </>
     );
   }
