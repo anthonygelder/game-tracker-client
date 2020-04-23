@@ -6,9 +6,11 @@ class AddGame extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      game: {},
       suggestions: [],
-      text: ''
+      text: '',
+      status: '',
+      year: '',
+      image: ''
     }
   }
 
@@ -55,10 +57,12 @@ class AddGame extends Component {
 
   selectGame = (game) => {
     console.log("hello",game)
-    // this.setState({
-    //   game: game,
-    //   text: game.
-    // })
+    this.setState({
+      text: game.name,
+      year: game.released.slice(0,-6),
+      image: game.background_image,
+      suggestions: []
+    })
   }
 
   renderSuggestions() {
@@ -75,12 +79,12 @@ class AddGame extends Component {
   }
 
   render() {
-    // console.log(this.state)
+    console.log(this.state)
     return (
       <>
         <h1>Add Game</h1>
         <form className="addEntry" onSubmit={e => this.handleSubmit(e)}>
-          <input required type="text" onChange={e => this.onTextChanged(e.target.value)} />
+          <input required type="text" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
           <button type="submit">
             Add
           </button>

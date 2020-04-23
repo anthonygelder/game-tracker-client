@@ -9,17 +9,18 @@ class Game extends Component {
     }
   }
 
-  cardClick() {
-      console.log('hello')
-    this.props.selectGame()
-  }
+  // cardClick() {
+  //   console.log('hello')
+  //   this.props.selectGame()
+  // }
 
   render() {
+    console.log(this.props)
     const { game } = this.props
     const date = game.released.slice(0,-6)
     return (
       <>
-        <div className="cardContainer" onClick={this.cardClick}>
+        <div className="cardContainer" onClick={() => {this.props.selectGame(game)}}>
             <div className='card'>
                 <img src={game.background_image} alt={'game'} className='cardImg' />
             </div>
