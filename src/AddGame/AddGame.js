@@ -43,6 +43,10 @@ class AddGame extends Component {
     this.setState({text: text})
   }
 
+  onStatusChanged(status){
+    this.setState({status: status})
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.searchGames()
@@ -86,12 +90,22 @@ class AddGame extends Component {
         <form className="addEntry" onSubmit={e => this.handleSubmit(e)}>
           <input required type="text" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
           <button type="submit">
-            Add
+            Search
           </button>
+          <div className="games">
+            {this.renderSuggestions()}
+          </div>
         </form>
-        <div className="games">
-          {this.renderSuggestions()}
-        </div>
+        <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
+          <option value="backlog">Backlog</option>
+          <option value="just started">Just started</option>
+          <option value="in progress">In progress</option>
+          <option value="almost done">Almost done</option>
+          <option value="complete">Complete</option>
+        </select>
+        <button type="submit">
+          Add
+        </button>
       </>
     );
   }
