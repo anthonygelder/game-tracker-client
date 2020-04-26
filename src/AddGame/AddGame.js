@@ -28,7 +28,6 @@ class AddGame extends Component {
     })
     .then((data) => {
       this.setState({ suggestions: data.results })
-      // this.getNames(data)
     })
   }
 
@@ -50,7 +49,6 @@ class AddGame extends Component {
         })
         .then(data => {
             this.props.routeProps.history.push('/games')
-            console.log(data)
         })
         .catch(error => {
             console.error(error)
@@ -64,7 +62,6 @@ class AddGame extends Component {
       year: this.state.year, 
       image: this.state.image
     }
-    console.log(newGame)
     this.addGame(newGame)
   }
 
@@ -120,11 +117,11 @@ class AddGame extends Component {
         </form>
         <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
           <option value="" disabled selected>Select a status</option>
-          <option value="backlog">Backlog</option>
-          <option value="just started">Just started</option>
-          <option value="in progress">In progress</option>
-          <option value="almost done">Almost done</option>
-          <option value="complete">Complete</option>
+          <option value="Backlog">Backlog</option>
+          <option value="Just Started">Just started</option>
+          <option value="In Progress">In progress</option>
+          <option value="Almost Done">Almost done</option>
+          <option value="Complete">Complete</option>
         </select>
         <button onClick={e => this.submitGame(e)}>
           Add

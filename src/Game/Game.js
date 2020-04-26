@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Game.css'
+// const { API_ENDPOINT } = require('../config')
 
 class Game extends Component {
   constructor(props) {
@@ -9,16 +10,8 @@ class Game extends Component {
     }
   }
 
-  // cardClick() {
-  //   console.log('hello')
-  //   this.props.selectGame()
-  // }
-
   render() {
-    console.log(this.props)
     const { game } = this.props
-
-
     if(this.props.saved) {
       return (
         <>
@@ -29,16 +22,14 @@ class Game extends Component {
               <h6><b>{game.game}</b></h6>
               <h6><b>{game.status}</b></h6>
               <p>{game.year}</p>
+              <button onClick={() => {this.props.deleteGame(game.id)}}>
+                Delete
+              </button>
           </div>
         </>
       );
     } else {
-      let date
-      if (game.released === null) {
-        date = 'N/A'
-      } else {
-        date = game.released.slice(0,-6)
-      }
+      const date = game.released === null ? 'N/A' : game.released.slice(0,-6)
       return (
           <>
           <div className="cardContainer" onClick={() => {this.props.selectGame(game)}}>
