@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import Game from '../Game/Game'
 import './GameList.css'
 const { API_ENDPOINT } = require('../config')
 
@@ -15,7 +16,9 @@ class GameList extends Component {
     fetch(`${API_ENDPOINT}/games`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        this.setState({
+          games: data
+        })
       })
   }
 
@@ -23,12 +26,25 @@ class GameList extends Component {
     this.getGames()
   }
 
+  renderGames() {
+    const { games } = this.state
+    if (games.length === 0) {
+      return null
+    } else {
+      return (
+        <>
+          {games.map((item) => <Game game={item} key={item.id} saved={"saved"}/>)}
+        </>
+      )
+    }
+  }
+
   render() {
-    console.log(this.state.games)
     return (
       <>
         <h1>Game List</h1>
         <Link to='/addGame'>Add Game</Link>
+        {this.renderGames()}
       </>
     );
   }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Game from '../Game/Game'
 import './AddGame.css'
+const { API_ENDPOINT } = require('../config')
 
 class AddGame extends Component {
   constructor(props) {
@@ -31,13 +32,41 @@ class AddGame extends Component {
     })
   }
 
-  // getNames(data) {
-  //   let gameNames = []
-  //   data.results.map((item) => gameNames.push(item.name))
-  //   this.setState({
-  //     suggestions: gameNames
-  //   })
-  // }
+  addGame(game) {
+    fetch(`${API_ENDPOINT}/games/`, {
+        method: 'POST',
+        body: JSON.stringify(game),
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
+    .then(res => {
+        if (!res.ok) {
+            return res.json().then(error => {
+                throw error
+            })
+            }
+            return res.json()
+        })
+        .then(data => {
+            this.props.routeProps.history.push('/games')
+            console.log(data)
+        })
+        .catch(error => {
+            console.error(error)
+    })
+}
+
+  submitGame() {
+    const newGame = {
+      game: this.state.text,
+      status: this.state.status,
+      year: this.state.year, 
+      image: this.state.image
+    }
+    console.log(newGame)
+    this.addGame(newGame)
+  }
 
   onTextChanged(text){
     this.setState({text: text})
@@ -52,18 +81,11 @@ class AddGame extends Component {
     this.searchGames()
 }
 
-  // suggestionSelected(value) {
-  //   this.setState({
-  //     text: value,
-  //     suggestions: []
-  //   })
-  // }
-
   selectGame = (game) => {
-    console.log("hello",game)
+    const yearInt = parseInt(game.released.slice(0,-6))
     this.setState({
       text: game.name,
-      year: game.released.slice(0,-6),
+      year: yearInt,
       image: game.background_image,
       suggestions: []
     })
@@ -83,7 +105,7 @@ class AddGame extends Component {
   }
 
   render() {
-    console.log(this.state)
+
     return (
       <>
         <h1>Add Game</h1>
@@ -97,13 +119,14 @@ class AddGame extends Component {
           </div>
         </form>
         <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
+          <option value="" disabled selected>Select a status</option>
           <option value="backlog">Backlog</option>
           <option value="just started">Just started</option>
           <option value="in progress">In progress</option>
           <option value="almost done">Almost done</option>
           <option value="complete">Complete</option>
         </select>
-        <button type="submit">
+        <button onClick={e => this.submitGame(e)}>
           Add
         </button>
       </>
