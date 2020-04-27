@@ -12,6 +12,12 @@ class GameList extends Component {
     }
   }
 
+  removeGame = (gameId) => {
+    const newGames = this.state.games.filter(game => game.id === gameId)
+    this.setState({
+      games: newGames
+    })
+  }
   
   deleteGame(gameId) {
     fetch(`${API_ENDPOINT}/games/${gameId}`, {
@@ -29,16 +35,12 @@ class GameList extends Component {
     })
     .then(() => {
       this.removeGame(gameId)
-      })
-      .catch(error => {
-          console.error(error)
-        })
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
   
-  removeGame(gameId) {
-    const newGames = this.state.games.filter(game => game.id === gameId)
-    console.log(newGames)
-  }
 
   getGames() {
     fetch(`${API_ENDPOINT}/games`)
@@ -61,13 +63,14 @@ class GameList extends Component {
     } else {
       return (
         <>
-          {games.map((item) => <Game game={item} key={item.id} saved={"saved"} deleteGame={this.deleteGame}/>)}
+          {games.map((item) => <Game game={item} key={item.id} saved={"saved"} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
         </>
       )
     }
   }
 
   render() {
+    console.log(this.state.games)
     return (
       <>
         <h1>Game List</h1>

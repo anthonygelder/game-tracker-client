@@ -13,6 +13,7 @@ class Game extends Component {
   render() {
     const { game } = this.props
     if(this.props.saved) {
+      
       return (
         <>
           <div className="cardContainer" >
