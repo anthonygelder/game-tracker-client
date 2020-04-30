@@ -27,7 +27,7 @@ class App extends Component {
           </div>
           <main className='App'>
             <Route exact path="/" render={() => <Landing />} />
-            <Route exact path="/games" render={() => <GameList />} />
+            <Route exact path="/games" render={(routeProps) => <GameList routeProps={routeProps}/>} />
             <Route exact path="/addGame" render={(routeProps) => <AddGame routeProps={routeProps}/>} />
             <Route exact path="/editGame/:entry_id" render={(routeProps) => <EditGame routeProps={routeProps}/>} />
             <Route exact path="/games/:entry_id" render={(routeProps) => <Game routeProps={routeProps} />} />

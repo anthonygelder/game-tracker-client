@@ -17,23 +17,30 @@ class Game extends Component {
       method: 'PATCH',
       body: JSON.stringify(editedStatus),
       headers: {
-          'content-type': 'application/json'
+        'content-type': 'application/json'
       },
   })
   .then(res => {
-      if (!res.ok) {
-          return res.json().then(error => {
-              throw error
-          })
-          }
+    if (!res.ok) {
+      return res.json().then(error => {
+        throw error
       })
-      .then(() => {
-          // this.props.routeProps.history.push('/entries')
-          console.log('heyo')
-      })
-      .catch(error => {
-          console.error(error)
+    }
+    })
+    .then(() => {
+      this.clearState()
+    })
+    .catch(error => {
+      console.error(error)
   })
+  }
+
+  clearState() {
+    this.props.getGames() 
+    this.setState({
+      status: '',
+      options: ''
+    })
   }
 
   changeStatus() {
@@ -63,7 +70,7 @@ class Game extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props)
     const { game } = this.props
     if(this.props.saved) {
       

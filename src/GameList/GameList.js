@@ -25,12 +25,12 @@ class GameList extends Component {
       headers: {
         'content-type': 'application/json'
       },
-  })
-  .then(res => {
-    if (!res.ok) {
-          return res.json().then(error => {
-            throw error
-          })
+    })
+    .then(res => {
+      if (!res.ok) {
+        return res.json().then(error => {
+          throw error
+        })
       }
     })
     .then(() => {
@@ -63,14 +63,13 @@ class GameList extends Component {
     } else {
       return (
         <>
-          {games.map((item) => <Game game={item} key={item.id} saved={"saved"} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
+          {games.map((item) => <Game game={item} key={item.id} saved={"saved"} routeProps={this.props.routeProps} getGames={(gameId) => this.getGames()} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
         </>
       )
     }
   }
 
   render() {
-    console.log(this.state.games)
     return (
       <>
         <h1>Game List</h1>
