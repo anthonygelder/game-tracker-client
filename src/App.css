@@ -23,3 +23,8 @@ main {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}

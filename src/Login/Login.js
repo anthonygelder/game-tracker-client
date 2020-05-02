@@ -6,20 +6,36 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-        email: '',
-        password: ''
+            email: '',
+            password: ''
         }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        console.log(this.state.email, this.state.password)
+    }
+
+    updateEmail(email) {
+        this.setState({ email: email })
+    }
+
+    updatePassword(password) {
+        this.setState({ password: password })
     }
 
     render() {
         return (
         <>
             <h1>Login</h1>
-            <form>
-                <label>Email:</label>
-                <input type='text' value={this.state.email} onChange={this.updateEmail} />
-                <label>Password:</label>
-                <input type='text' value={this.state.password} onChange={this.updatePassword} />
+            <form onSubmit={e => this.handleSubmit(e)} > 
+                <label htmlFor="email">Email:</label>
+                <input required type='text' name="email" id="email" value={this.state.email} onChange={e => this.updateEmail(e.target.value)} />
+                <label htmlFor="password">Password:</label>
+                <input required type='password' name="password" id="password" value={this.state.password} onChange={e => this.updatePassword(e.target.value)} />
+                <button type="submit">
+                    Submit
+                </button>
             </form>
         </>
         );
