@@ -70,7 +70,6 @@ class Game extends Component {
   }
 
   render() {
-    console.log(this.props)
     const { game } = this.props
     if(this.props.saved) {
       

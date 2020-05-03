@@ -8,12 +8,14 @@ function Header() {
             <Link to='/'>
                 <h2>Game Tracker</h2>
             </Link>
-            <Link to='/login'>
-                <button>Login</button>
-            </Link>
-            <Link to='/register'>
-                <button>Register</button>
-            </Link>
+            <div className='buttons'>
+                <Link to='/login'>
+                    <button>Login</button>
+                </Link>
+                <Link to='/register'>
+                    <button>Register</button>
+                </Link>
+            </div>
         </header>
     )
 }

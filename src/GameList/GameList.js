@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import TokenService from '../services/token-service'
 import Game from '../Game/Game'
 import './GameList.css'
 const { API_ENDPOINT } = require('../config')
@@ -43,7 +44,12 @@ class GameList extends Component {
   
 
   getGames() {
-    fetch(`${API_ENDPOINT}/games`)
+    fetch(`${API_ENDPOINT}/games`, {
+      method: 'GET',
+      headers: {
+        'authorization': `basic ${TokenService.getAuthToken()}`,
+      },
+    })
       .then(response => response.json())
       .then(data => {
         this.setState({

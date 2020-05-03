@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Game from '../Game/Game'
+import TokenService from '../services/token-service'
 import './AddGame.css'
 const { API_ENDPOINT } = require('../config')
 
@@ -36,7 +37,8 @@ class AddGame extends Component {
         method: 'POST',
         body: JSON.stringify(game),
         headers: {
-            'content-type': 'application/json'
+          'authorization': `basic ${TokenService.getAuthToken()}`,
+          'content-type': 'application/json'
         },
     })
     .then(res => {
