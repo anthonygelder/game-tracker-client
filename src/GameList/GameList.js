@@ -78,8 +78,14 @@ class GameList extends Component {
   render() {
     return (
       <>
-        <h1>Game List</h1>
-        <Link to='/addGame'>Add Game</Link>
+        <section>
+          <h2>Your Games</h2>
+          <Link to='/addGame'>
+            <button>
+              Add Game
+            </button>    
+          </Link>
+        </section>
         <div className="games">
           {this.renderGames()}
         </div>

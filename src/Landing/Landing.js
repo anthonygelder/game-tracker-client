@@ -13,12 +13,19 @@ class Landing extends Component {
   render() {
     return (
       <>
-        <h1>Landing</h1>
-        <Link to='/games'>
-          <button>
-            View Games
-          </button>
-        </Link>
+        <section>
+          <h2>Game Tracker</h2>
+          <ul>
+            <li>Add your game library.</li>
+            <li>Track your progress.</li>
+            <li>Rate game after completion.</li>
+          </ul>
+          <Link to='/games'>
+            <button>
+              View Games
+            </button>
+          </Link>
+        </section>
       </>
     );
   }

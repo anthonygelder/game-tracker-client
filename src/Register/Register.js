@@ -37,22 +37,22 @@ class Register extends Component {
 
     render() {
         return (
-        <>
-            <h1>Register</h1>
-            <form onSubmit={e => this.handleSubmit(e)} > 
-                <label htmlFor="email">Email:</label>
-                <input required type='text' name="email" id="email" value={this.state.email} onChange={e => this.updateEmail(e.target.value)} />
-                <label htmlFor="name">Name:</label>
-                <input required type='text' name="name" id="name" value={this.state.name} onChange={e => this.updateName(e.target.value)} />
-                <label htmlFor="password">Password:</label>
-                <input required type='password' name="password" id="password" value={this.state.password} onChange={e => this.updatePassword(e.target.value)} />
-                <label htmlFor="confirmPassword">Confirm Password:</label>
-                <input required type='password' name="confirmPassword" id="confirmPassword" value={this.state.confirmPassword} onChange={e => this.updateConfirmPassword(e.target.value)} />
-                <button type="submit">
-                    Submit
-                </button>
-            </form>
-        </>
+            <>
+                <h2>Register</h2>
+                <form onSubmit={e => this.handleSubmit(e)} > 
+                    <label htmlFor="email">Email:</label>
+                    <input required type='text' name="email" id="email" value={this.state.email} onChange={e => this.updateEmail(e.target.value)} />
+                    <label htmlFor="name">Name:</label>
+                    <input required type='text' name="name" id="name" value={this.state.name} onChange={e => this.updateName(e.target.value)} />
+                    <label htmlFor="password">Password:</label>
+                    <input required type='password' name="password" id="password" value={this.state.password} onChange={e => this.updatePassword(e.target.value)} />
+                    <label htmlFor="confirmPassword">Confirm Password:</label>
+                    <input required type='password' name="confirmPassword" id="confirmPassword" value={this.state.confirmPassword} onChange={e => this.updateConfirmPassword(e.target.value)} />
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+            </>
         );
     }
 }

@@ -7,7 +7,8 @@ class Game extends Component {
     super(props)
     this.state = {
       status: '',
-      options:``
+      options:``,
+      statusFlag: true
     }
   }
 
@@ -39,14 +40,16 @@ class Game extends Component {
     this.props.getGames() 
     this.setState({
       status: '',
-      options: ''
+      options: '',
+      statusFlag: true
     })
   }
 
   changeStatus() {
     this.setState({
       status: this.props.game.status,
-      options: this.displaySelect()
+      options: this.displaySelect(),
+      statusFlag: false
     })
   }
 
@@ -55,14 +58,26 @@ class Game extends Component {
   }
 
   displaySelect() {
+    const options = ["Backlog", "Just Started", "In Progress", "Almost Done", "Complete"]
+    const { status } = this.props.game
     return (
       <>
         <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
-          <option value="Backlog">Backlog</option>
-          <option value="Just Started">Just started</option>
-          <option value="In Progress">In progress</option>
-          <option value="Almost Done">Almost done</option>
-          <option value="Complete">Complete</option>
+          {options.map(s => {
+            if (s === status) {
+              return (
+                <>
+                  <option selected value={s}>{s}</option>
+                </>
+              )
+            } else {
+              return (
+                <>
+                  <option value={s}>{s}</option>
+                </>
+              )
+            }
+          })}
         </select>
         <button onClick={() => {this.updateGame()}}>Update</button>
       </>
@@ -72,7 +87,6 @@ class Game extends Component {
   render() {
     const { game } = this.props
     if(this.props.saved) {
-      
       return (
         <>
           <div className="cardContainer" >
@@ -80,7 +94,7 @@ class Game extends Component {
                   <img src={game.image} alt={'game'} className='cardImg' />
               </div>
               <h6><b>{game.game}</b></h6>
-              <h6><b onClick={() => {this.changeStatus()}}>{game.status}</b></h6>
+              {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
               <p>{game.year}</p>
               <button onClick={() => {this.props.deleteGame(game.id)}}>

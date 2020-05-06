@@ -1,7 +1,3 @@
-* {
-  border: solid 1px black;
-}
-
 header {
   background-color: rgba(124, 5, 124, 0.336);
   height: 75px;
@@ -9,6 +5,10 @@ header {
 
 h1 {
   color: rgb(0, 0, 0);
+}
+
+h2 {
+  margin: 0 auto;
 }
 
 main {
@@ -24,7 +24,16 @@ main {
   justify-content: space-evenly;
 }
 
-form {
+form, .addGame {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  align-self: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

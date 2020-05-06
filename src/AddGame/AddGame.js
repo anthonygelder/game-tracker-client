@@ -107,7 +107,7 @@ class AddGame extends Component {
 
     return (
       <>
-        <h1>Add Game</h1>
+        <h2>Add Game</h2>
         <form className="addEntry" onSubmit={e => this.handleSubmit(e)}>
           <input required type="text" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
           <button type="submit">
@@ -117,17 +117,19 @@ class AddGame extends Component {
             {this.renderSuggestions()}
           </div>
         </form>
-        <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
-          <option value="" disabled selected>Select a status</option>
-          <option value="Backlog">Backlog</option>
-          <option value="Just Started">Just started</option>
-          <option value="In Progress">In progress</option>
-          <option value="Almost Done">Almost done</option>
-          <option value="Complete">Complete</option>
-        </select>
-        <button onClick={e => this.submitGame(e)}>
-          Add
-        </button>
+        <div className="addGame">
+          <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
+            <option value="" disabled selected>Select a status</option>
+            <option value="Backlog">Backlog</option>
+            <option value="Just Started">Just started</option>
+            <option value="In Progress">In progress</option>
+            <option value="Almost Done">Almost done</option>
+            <option value="Complete">Complete</option>
+          </select>
+          <button onClick={e => this.submitGame(e)}>
+            Add
+          </button>
+        </div>
       </>
     );
   }
