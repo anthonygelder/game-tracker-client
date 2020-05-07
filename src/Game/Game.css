@@ -1,11 +1,12 @@
 .cardContainer {
-    width: 160px;
+    width: 140px;
     border: solid 2px rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+    padding: 5px;
 }
 
 .cardContainer:hover {
@@ -16,7 +17,7 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 160px;
+    width: 140px;
     height: 145px;
     overflow: hidden;
     display: flex;

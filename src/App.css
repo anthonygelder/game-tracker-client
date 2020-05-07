@@ -9,6 +9,8 @@ h1 {
 
 h2 {
   margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 main {
@@ -22,6 +24,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 10px;
 }
 
 form, .addGame {
@@ -36,4 +39,14 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+button {
+  border-radius: 5px;
+  padding: 3px 5px;
+  border: solid 1px black;
+}
+
+input, select {
+  margin-bottom: 10px;
 }

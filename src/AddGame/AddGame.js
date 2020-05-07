@@ -90,6 +90,13 @@ class AddGame extends Component {
     })
   }
 
+  clear = () => {
+    this.setState({
+      text: '',
+      suggestions: []
+    })
+  }
+
   renderSuggestions() {
     const { suggestions } = this.state
     if (suggestions.length === 0) {
@@ -105,19 +112,20 @@ class AddGame extends Component {
 
   render() {
 
+    console.log(this.state.suggestions.length)
     return (
       <>
         <h2>Add Game</h2>
         <form className="addEntry" onSubmit={e => this.handleSubmit(e)}>
-          <input required type="text" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
-          <button type="submit">
-            Search
-          </button>
+          <label htmlFor="game">Game:</label>
+          <input required type="text" id="game" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
+          {this.state.suggestions.length === 0 ? <button type="submit">Search</button> : <button onClick={this.clear}>Clear</button>}
           <div className="games">
             {this.renderSuggestions()}
           </div>
         </form>
         <div className="addGame">
+          <label htmlFor="status">Status:</label>
           <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
             <option value="" disabled selected>Select a status</option>
             <option value="Backlog">Backlog</option>

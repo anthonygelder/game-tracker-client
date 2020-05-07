@@ -5,8 +5,8 @@ import './Header.css'
 function Header() {
     return (
         <header> 
-            <Link to='/'>
-                <h2>Game Tracker</h2>
+            <Link to='/' style={{ textDecoration: 'none' }}>
+                <h1>Game Tracker</h1>
             </Link>
             <div className='buttons'>
                 <Link to='/login'>
