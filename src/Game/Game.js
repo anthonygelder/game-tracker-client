@@ -8,12 +8,14 @@ class Game extends Component {
     this.state = {
       status: '',
       options:``,
+      rating: 1,
       statusFlag: true
     }
   }
 
   updateGame() {
-    const editedStatus = { status: this.state.status }
+    const editedStatus = { status: this.state.status,
+                            rating: this.state.rating }
     fetch(`${API_ENDPOINT}/games/${this.props.game.id}`, {
       method: 'PATCH',
       body: JSON.stringify(editedStatus),
@@ -53,8 +55,27 @@ class Game extends Component {
     })
   }
 
-  onStatusChanged(status){
+  onStatusChange(status){
     this.setState({status: status})
+  }
+
+  onRatingChange(rating){
+    this.setState({rating: rating})
+  }
+
+  renderRating() {
+    return (
+      <>
+        <select  id='rating' onChange={e => this.onRatingChange(e.target.value)}>
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+        </select>
+        <button onClick={() => {this.updateGame()}}>Submit Rating</button>
+      </>
+      )
   }
 
   displaySelect() {
@@ -62,7 +83,7 @@ class Game extends Component {
     const { status } = this.props.game
     return (
       <>
-        <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
+        <select id="status" onChange={e => this.onStatusChange(e.target.value)} >
           {options.map(s => {
             if (s === status) {
               return (
@@ -96,6 +117,7 @@ class Game extends Component {
               <h6><b>{game.game}</b></h6>
               {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
+              {game.status === "Complete" ? this.renderRating() : ''}
               <p>{game.year}</p>
               <button onClick={() => {this.props.deleteGame(game.id)}}>
                 Delete

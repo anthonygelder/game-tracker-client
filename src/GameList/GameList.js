@@ -76,6 +76,7 @@ class GameList extends Component {
   }
 
   render() {
+    console.log(this.state.games)
     return (
       <>
         <section>
