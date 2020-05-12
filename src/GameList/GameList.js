@@ -62,8 +62,38 @@ class GameList extends Component {
     this.getGames()
   }
 
-  renderGames() {
+  filterGames() {
     const { games } = this.state
+    return games.filter(game => game.status !== "Complete" || game.status !== "Backlog")
+  }
+
+  filterBackGames() {
+    const { games } = this.state
+    return games.filter(game => game.status === "Backlog")
+  }
+
+  filterCompleteGames() {
+    const { games } = this.state
+    return games.filter(game => game.status === "Complete")
+  }
+  
+  renderGames(status) {
+    console.log('click')
+    let { games } = this.state
+    switch (status) {
+      case "Complete":
+        games = this.filterCompleteGames()
+        break
+      case "Backlog":
+        games = this.filterBackGames()
+        break
+      case "All":
+        games = this.state.games
+        break
+      default: 
+        games = this.filterGames()
+        break
+    }
     if (games.length === 0) {
       return null
     } else {
@@ -75,12 +105,31 @@ class GameList extends Component {
     }
   }
 
+  // filterGames() {
+  //   const { games } = this.state
+  //   return games.filter(game => game.status !== "Complete")
+  // }
+
+  // renderGames() {
+  //   const gamesNotDone = this.filterGames()
+  //   if (gamesNotDone.length === 0) {
+  //     return null
+  //   } else {
+  //     return (
+  //       <>
+  //         {gamesNotDone.map((item) => <Game game={item} key={item.id} saved={"saved"} routeProps={this.props.routeProps} getGames={(gameId) => this.getGames()} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
+  //       </>
+  //     )
+  //   }
+  // }
+
   render() {
-    console.log(this.state.games)
     return (
       <>
         <section>
           <h2>Your Games</h2>
+          <button value="Complete" onClick={e => this.renderGames(e.target.value)}>Complete</button>
+
           <Link to='/addGame'>
             <button>
               Add Game
