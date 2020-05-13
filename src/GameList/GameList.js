@@ -9,7 +9,8 @@ class GameList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      games: []
+      games: [],
+      filteredGames: []
     }
   }
 
@@ -42,7 +43,6 @@ class GameList extends Component {
     })
   }
   
-
   getGames() {
     fetch(`${API_ENDPOINT}/games`, {
       method: 'GET',
@@ -50,12 +50,14 @@ class GameList extends Component {
         'authorization': `basic ${TokenService.getAuthToken()}`,
       },
     })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          games: data
-        })
+    .then(response => response.json())
+    .then(data => {
+      console.log('set data')
+      this.setState({
+        games: data
       })
+      this.selectFilter()
+    })
   }
 
   componentDidMount() {
@@ -63,8 +65,10 @@ class GameList extends Component {
   }
 
   filterGames() {
+    console.log('filter')
     const { games } = this.state
-    return games.filter(game => game.status !== "Complete" || game.status !== "Backlog")
+    console.log('games', games)
+    return games.filter(game => game.status === "Just Started" || game.status === "In Progress" || game.status === "Almost Done")
   }
 
   filterBackGames() {
@@ -76,8 +80,15 @@ class GameList extends Component {
     const { games } = this.state
     return games.filter(game => game.status === "Complete")
   }
-  
-  renderGames(status) {
+
+  updateFilter(games) {
+    console.log('update filter', games)
+    this.setState({
+      filteredGames: games
+    })
+  }
+
+  selectFilter(status) {
     console.log('click')
     let { games } = this.state
     switch (status) {
@@ -90,20 +101,28 @@ class GameList extends Component {
       case "All":
         games = this.state.games
         break
-      default: 
+      default:
+        console.log('default')
         games = this.filterGames()
         break
     }
-    if (games.length === 0) {
+    this.updateFilter(games)
+    this.renderGames()
+  }
+  
+  renderGames() {
+    const { filteredGames } = this.state
+    console.log(filteredGames)
+    if (filteredGames.length === 0) {
       return null
     } else {
       return (
         <>
-          {games.map((item) => <Game game={item} key={item.id} saved={"saved"} routeProps={this.props.routeProps} getGames={(gameId) => this.getGames()} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
-        </>
-      )
+            {filteredGames.map((item) => <Game game={item} key={item.id} saved={"saved"} routeProps={this.props.routeProps} getGames={(gameId) => this.getGames()} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
+          </>
+        )
+      }
     }
-  }
 
   // filterGames() {
   //   const { games } = this.state
@@ -128,7 +147,10 @@ class GameList extends Component {
       <>
         <section>
           <h2>Your Games</h2>
-          <button value="Complete" onClick={e => this.renderGames(e.target.value)}>Complete</button>
+          <button value="Complete" onClick={e => this.selectFilter(e.target.value)}>Complete</button>
+          <button value="Backlog" onClick={e => this.selectFilter(e.target.value)}>Backlog</button>
+          <button value="All" onClick={e => this.selectFilter(e.target.value)}>All</button>
+          <button onClick={e => this.selectFilter()}>Currently Playing</button>
 
           <Link to='/addGame'>
             <button>
