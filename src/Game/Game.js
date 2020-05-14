@@ -6,15 +6,15 @@ class Game extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      status: '',
-      options:``,
+      status: this.props.game.status,
+      options: ``,
       rating: 1,
       statusFlag: true
     }
   }
 
   updateGame() {
-    const editedStatus = { status: this.state.status,
+    const editedStatus = {  status: this.state.status,
                             rating: this.state.rating }
     fetch(`${API_ENDPOINT}/games/${this.props.game.id}`, {
       method: 'PATCH',
@@ -117,6 +117,7 @@ class Game extends Component {
               <h6><b>{game.game}</b></h6>
               {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
+              {/* {this.props.rating ? <h6>{this.props.rating}</h6> : ''} */}
               {game.status === "Complete" ? this.renderRating() : ''}
               <p>{game.year}</p>
               <button onClick={() => {this.props.deleteGame(game.id)}}>

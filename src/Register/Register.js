@@ -15,8 +15,6 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.state.email, this.state.name)
-        console.log(this.state.password, this.state.confirmPassword)
     }
 
     updateEmail(email) {

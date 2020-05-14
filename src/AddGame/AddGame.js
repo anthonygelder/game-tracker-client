@@ -111,8 +111,6 @@ class AddGame extends Component {
   }
 
   render() {
-
-    console.log(this.state.suggestions.length)
     return (
       <>
         <h2>Add Game</h2>

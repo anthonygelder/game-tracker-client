@@ -14,7 +14,6 @@ class Login extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.state.email, this.state.password)
         TokenService.saveAuthToken(
             TokenService.makeBasicAuthToken(this.state.email, this.state.password)
         )

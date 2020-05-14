@@ -15,13 +15,17 @@ class GameList extends Component {
   }
 
   removeGame = (gameId) => {
-    const newGames = this.state.games.filter(game => game.id === gameId)
+    console.log('delete')
+    const newGames = this.state.games.filter(game => game.id !== gameId)
+    console.log(newGames)
+    this.getGames()
     this.setState({
       games: newGames
     })
   }
   
   deleteGame(gameId) {
+    
     fetch(`${API_ENDPOINT}/games/${gameId}`, {
       method: 'DELETE',
       headers: {
@@ -52,7 +56,6 @@ class GameList extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('set data')
       this.setState({
         games: data
       })
@@ -65,9 +68,7 @@ class GameList extends Component {
   }
 
   filterGames() {
-    console.log('filter')
     const { games } = this.state
-    console.log('games', games)
     return games.filter(game => game.status === "Just Started" || game.status === "In Progress" || game.status === "Almost Done")
   }
 
@@ -82,14 +83,12 @@ class GameList extends Component {
   }
 
   updateFilter(games) {
-    console.log('update filter', games)
     this.setState({
       filteredGames: games
     })
   }
 
   selectFilter(status) {
-    console.log('click')
     let { games } = this.state
     switch (status) {
       case "Complete":
@@ -102,7 +101,7 @@ class GameList extends Component {
         games = this.state.games
         break
       default:
-        console.log('default')
+  
         games = this.filterGames()
         break
     }
@@ -112,7 +111,6 @@ class GameList extends Component {
   
   renderGames() {
     const { filteredGames } = this.state
-    console.log(filteredGames)
     if (filteredGames.length === 0) {
       return null
     } else {
@@ -123,24 +121,6 @@ class GameList extends Component {
         )
       }
     }
-
-  // filterGames() {
-  //   const { games } = this.state
-  //   return games.filter(game => game.status !== "Complete")
-  // }
-
-  // renderGames() {
-  //   const gamesNotDone = this.filterGames()
-  //   if (gamesNotDone.length === 0) {
-  //     return null
-  //   } else {
-  //     return (
-  //       <>
-  //         {gamesNotDone.map((item) => <Game game={item} key={item.id} saved={"saved"} routeProps={this.props.routeProps} getGames={(gameId) => this.getGames()} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
-  //       </>
-  //     )
-  //   }
-  // }
 
   render() {
     return (
