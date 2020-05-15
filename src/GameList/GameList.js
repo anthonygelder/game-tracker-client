@@ -14,18 +14,17 @@ class GameList extends Component {
     }
   }
 
-  removeGame = (gameId) => {
-    console.log('delete')
-    const newGames = this.state.games.filter(game => game.id !== gameId)
-    console.log(newGames)
-    this.getGames()
-    this.setState({
-      games: newGames
-    })
-  }
+  // removeGame = (gameId) => {
+  //   console.log('delete')
+  //   const newGames = this.state.games.filter(game => game.id !== gameId)
+  //   console.log(newGames)
+  //   this.getGames()
+  //   this.setState({
+  //     games: newGames
+  //   })
+  // }
   
   deleteGame(gameId) {
-    
     fetch(`${API_ENDPOINT}/games/${gameId}`, {
       method: 'DELETE',
       headers: {
@@ -40,7 +39,8 @@ class GameList extends Component {
       }
     })
     .then(() => {
-      this.removeGame(gameId)
+      // this.removeGame(gameId)
+      this.getGames()
     })
     .catch(error => {
       console.error(error)
@@ -112,10 +112,14 @@ class GameList extends Component {
   renderGames() {
     const { filteredGames } = this.state
     if (filteredGames.length === 0) {
-      return null
-    } else {
       return (
         <>
+          <p>No Games.</p>
+        </>
+      )
+    } else {
+      return (
+          <>
             {filteredGames.map((item) => <Game game={item} key={item.id} saved={"saved"} routeProps={this.props.routeProps} getGames={(gameId) => this.getGames()} deleteGame={(gameId) => this.deleteGame(gameId) }/>)}
           </>
         )
@@ -127,16 +131,17 @@ class GameList extends Component {
       <>
         <section>
           <h2>Your Games</h2>
-          <button value="Complete" onClick={e => this.selectFilter(e.target.value)}>Complete</button>
-          <button value="Backlog" onClick={e => this.selectFilter(e.target.value)}>Backlog</button>
-          <button value="All" onClick={e => this.selectFilter(e.target.value)}>All</button>
-          <button onClick={e => this.selectFilter()}>Currently Playing</button>
-
           <Link to='/addGame'>
             <button>
               Add Game
             </button>    
           </Link>
+          <div>
+            <button value="All" onClick={e => this.selectFilter(e.target.value)}>All</button>
+            <button value="Complete" onClick={e => this.selectFilter(e.target.value)}>Complete</button>
+            <button value="Backlog" onClick={e => this.selectFilter(e.target.value)}>Backlog</button>
+            <button onClick={e => this.selectFilter()}>Currently Playing</button>
+          </div>
         </section>
         <div className="games">
           {this.renderGames()}

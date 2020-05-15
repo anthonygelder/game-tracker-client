@@ -50,3 +50,7 @@ button {
 input, select {
   margin-bottom: 10px;
 }
+
+button:focus {
+  background-color: rgb(153, 153, 153);
+}

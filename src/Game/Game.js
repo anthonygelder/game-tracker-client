@@ -118,7 +118,7 @@ class Game extends Component {
               {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
               {/* {this.props.rating ? <h6>{this.props.rating}</h6> : ''} */}
-              {game.status === "Complete" ? this.renderRating() : ''}
+              {/* {game.status === "Complete" ? this.renderRating() : ''} */}
               <p>{game.year}</p>
               <button onClick={() => {this.props.deleteGame(game.id)}}>
                 Delete
