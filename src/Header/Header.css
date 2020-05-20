@@ -1,6 +1,23 @@
 header {
+    /* background-color: rgba(124, 5, 124, 0.336); */
+    background-image: url(../img/Ink.jpg);
+    background-size: 80px;
+    height: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+    border-bottom: solid 3px black;
+}
+
+h1 {
+    font-family: font;
+    color: rgb(0, 162, 255);
+    -webkit-text-stroke: 1px black;
+    text-shadow: 2px 2px #33ff00;
+}
+
+@font-face {
+    font-family: font;
+    src: url(../fonts/Republiko.otf);
 }

@@ -111,6 +111,7 @@ class AddGame extends Component {
   }
 
   render() {
+
     return (
       <>
         <h2>Add Game</h2>
@@ -118,8 +119,10 @@ class AddGame extends Component {
           <label htmlFor="game">Game:</label>
           <input required type="text" id="game" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
           {this.state.suggestions.length === 0 ? <button type="submit">Search</button> : <button onClick={this.clear}>Clear</button>}
-          <div className="games">
-            {this.renderSuggestions()}
+          <div className="slide">
+            <div className="games">
+              {this.renderSuggestions()}
+            </div>
           </div>
         </form>
         <div className="addGame">
