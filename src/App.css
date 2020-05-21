@@ -1,3 +1,13 @@
+.container {
+  min-height: 100vh; 
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px;
+  text-align: center;
+  width: 100%;
+}
+
 h2 {
   margin: 0 auto;
   margin-top: 20px;
@@ -44,4 +54,19 @@ input, select {
 
 button:focus {
   background-color: rgb(153, 153, 153);
+}
+
+footer {
+  background-image: url(./img/Ink.jpg);
+  background-size: 80px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer > p {
+  color: white;
 }

@@ -3,18 +3,15 @@ import './Landing.css'
 import { Link } from 'react-router-dom'
 
 class Landing extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      
-    }
-  }
 
   render() {
     return (
       <>
         <section>
-          <h2>Game Tracker</h2>
+          <div className="section">
+            <h2>Welcome to your personal video game tracker.</h2>
+          </div>
+          <div className="background"></div>
           <ul>
             <li>Add your game library.</li>
             <li>Track your progress.</li>

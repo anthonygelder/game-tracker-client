@@ -1,0 +1,14 @@
+.background {
+    /* background-image: url(../img/Ink.jpg); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../img/Ink.jpg);
+    background-size: 80px;
+    height: 150px;
+    width: 100%;
+    border-bottom: solid 3px black;
+    border-top: solid 3px black;
+}
+
+.section {
+    width: 80%;
+}

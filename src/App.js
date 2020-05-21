@@ -34,6 +34,9 @@ class App extends Component {
             <Route exact path="/register" render={(routeProps) => <Register routeProps={routeProps} />} />
             <Route exact path="/login" render={(routeProps) => <Login routeProps={routeProps} />} />
           </main>
+          <footer>  
+            <p>Game Tracker © 2020</p>
+          </footer>
         </div>
       </>
     );
