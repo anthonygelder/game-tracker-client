@@ -6,11 +6,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
-    padding: 5px;
+    padding: 2px;
+    border-radius: 4px;
 }
 
 .cardContainer:hover {
-    box-shadow: 0 8px 26px 0 rgb(102, 255, 0);
+    box-shadow: 0 8px s6px 0 rgb(207, 126, 60);
     cursor: pointer;
 }
 
@@ -22,6 +23,8 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    border-radius: 4px;
+
 }
 
 .card:hover {
