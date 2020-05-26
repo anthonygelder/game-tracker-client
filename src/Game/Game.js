@@ -114,12 +114,14 @@ class Game extends Component {
               <div className='card'>
                   <img src={game.image} alt={'game'} className='cardImg' />
               </div>
-              <h6><b>{game.game}</b></h6>
+              <div>
+                <h3><b>{game.game}</b></h3>
+                <p>{game.year}</p>
+              </div>
               {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
               {/* {this.props.rating ? <h6>{this.props.rating}</h6> : ''} */}
               {/* {game.status === "Complete" ? this.renderRating() : ''} */}
-              <p>{game.year}</p>
               <button onClick={() => {this.props.deleteGame(game.id)}}>
                 Delete
               </button>

@@ -13,38 +13,31 @@ class GameList extends Component {
       filteredGames: []
     }
   }
-
-  // removeGame = (gameId) => {
-  //   console.log('delete')
-  //   const newGames = this.state.games.filter(game => game.id !== gameId)
-  //   console.log(newGames)
-  //   this.getGames()
-  //   this.setState({
-  //     games: newGames
-  //   })
-  // }
   
   deleteGame(gameId) {
-    fetch(`${API_ENDPOINT}/games/${gameId}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-    .then(res => {
-      if (!res.ok) {
+    const del = window.confirm("Are you sure you wanna delete this game?")
+    if(del) {
+      fetch(`${API_ENDPOINT}/games/${gameId}`, {
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        },
+      })
+      .then(res => {
+        if (!res.ok) {
         return res.json().then(error => {
           throw error
         })
       }
-    })
-    .then(() => {
-      // this.removeGame(gameId)
-      this.getGames()
-    })
-    .catch(error => {
-      console.error(error)
-    })
+      })
+      .then(() => {
+        // this.removeGame(gameId)
+        this.getGames()
+      })
+      .catch(error => {
+        console.error(error)
+      })
+    }
   }
   
   getGames() {
