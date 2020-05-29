@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import TokenService from '../services/token-service'
 import './Game.css'
 const { API_ENDPOINT } = require('../config')
 
@@ -20,7 +21,8 @@ class Game extends Component {
       method: 'PATCH',
       body: JSON.stringify(editedStatus),
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'authorization': `basic ${TokenService.getAuthToken()}`
       },
   })
   .then(res => {

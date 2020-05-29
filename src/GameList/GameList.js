@@ -20,7 +20,8 @@ class GameList extends Component {
       fetch(`${API_ENDPOINT}/games/${gameId}`, {
         method: 'DELETE',
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'authorization': `basic ${TokenService.getAuthToken()}`
         },
       })
       .then(res => {
