@@ -17,6 +17,7 @@ class Login extends Component {
         TokenService.saveAuthToken(
             TokenService.makeBasicAuthToken(this.state.email, this.state.password)
         )
+        this.props.routeProps.history.push('/games')
     }
 
     updateEmail(email) {
