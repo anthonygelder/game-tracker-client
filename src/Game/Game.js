@@ -22,7 +22,7 @@ class Game extends Component {
       body: JSON.stringify(editedStatus),
       headers: {
         'content-type': 'application/json',
-        'authorization': `basic ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
   })
   .then(res => {

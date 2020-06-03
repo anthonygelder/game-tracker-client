@@ -20,8 +20,8 @@ class GameList extends Component {
       fetch(`${API_ENDPOINT}/games/${gameId}`, {
         method: 'DELETE',
         headers: {
-          'content-type': 'application/json',
-          'authorization': `basic ${TokenService.getAuthToken()}`
+          // 'content-type': 'application/json',
+          'authorization': `bearer ${TokenService.getAuthToken()}`
         },
       })
       .then(res => {
@@ -32,7 +32,6 @@ class GameList extends Component {
       }
       })
       .then(() => {
-        // this.removeGame(gameId)
         this.getGames()
       })
       .catch(error => {
@@ -45,7 +44,7 @@ class GameList extends Component {
     fetch(`${API_ENDPOINT}/games`, {
       method: 'GET',
       headers: {
-        'authorization': `basic ${TokenService.getAuthToken()}`,
+        'authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
     .then(response => response.json())

@@ -37,7 +37,7 @@ class AddGame extends Component {
         method: 'POST',
         body: JSON.stringify(game),
         headers: {
-          'authorization': `basic ${TokenService.getAuthToken()}`,
+          'authorization': `bearer ${TokenService.getAuthToken()}`,
           'content-type': 'application/json'
         },
     })

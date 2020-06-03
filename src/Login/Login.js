@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TokenService from '../services/token-service'
+import AuthApiService from '../services/auth-api-service'
 // import { Route } from 'react-router-dom'
 import './Login.css'
 
@@ -13,10 +14,24 @@ class Login extends Component {
     }
 
     handleSubmit(e) {
+
         e.preventDefault()
-        TokenService.saveAuthToken(
-            TokenService.makeBasicAuthToken(this.state.email, this.state.password)
-        )
+        this.setState({ error: null })
+        const { email, password } = e.target
+        
+        AuthApiService.postLogin({
+            user_email: email.value,
+            password: password.value,
+            })
+            .then(res => {
+                email.value = ''
+                password.value = ''
+                TokenService.saveAuthToken(res.authToken)
+                this.props.onLoginSuccess()
+            })
+            .catch(res => {
+            this.setState({ error: res.error })
+        })
         this.props.routeProps.history.push('/games')
     }
 
