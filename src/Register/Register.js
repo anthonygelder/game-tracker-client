@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 // import { Route } from 'react-router-dom'
+import AuthApiService from '../services/auth-api-service'
 import './Register.css'
 
 class Register extends Component {
@@ -15,6 +16,22 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+        const { name, email, password } = e.target
+        this.setState({ error: null })
+        AuthApiService.postUser({
+            user_name: name.value,
+            password: password.value,
+            user_email: email.value,
+        })
+        .then(user => {
+            name.value = ''
+            email.value = ''
+            password.value = ''
+            this.props.onRegistrationSuccess()
+        })
+        .catch(res => {
+            this.setState({ error: res.error })
+        })
     }
 
     updateEmail(email) {
