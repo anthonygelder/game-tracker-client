@@ -11,23 +11,20 @@ class Register extends Component {
             name: '',
             password: '',
             confirmPassword: '',
+            error: null
         }
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        const { name, email, password } = e.target
         this.setState({ error: null })
         AuthApiService.postUser({
-            user_name: name.value,
-            password: password.value,
-            user_email: email.value,
+            user_name: this.state.name,
+            password: this.state.password,
+            user_email: this.state.email,
         })
         .then(user => {
-            name.value = ''
-            email.value = ''
-            password.value = ''
-            this.props.onRegistrationSuccess()
+            this.props.routeProps.history.push('/login')
         })
         .catch(res => {
             this.setState({ error: res.error })

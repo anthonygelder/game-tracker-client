@@ -14,25 +14,20 @@ class Login extends Component {
     }
 
     handleSubmit(e) {
-
         e.preventDefault()
         this.setState({ error: null })
-        const { email, password } = e.target
-        
         AuthApiService.postLogin({
-            user_email: email.value,
-            password: password.value,
+            user_email: this.state.email,
+            password: this.state.password
             })
             .then(res => {
-                email.value = ''
-                password.value = ''
                 TokenService.saveAuthToken(res.authToken)
-                this.props.onLoginSuccess()
+                this.props.routeProps.history.push('/games')
             })
             .catch(res => {
             this.setState({ error: res.error })
         })
-        this.props.routeProps.history.push('/games')
+        // this.props.routeProps.history.push('/games')
     }
 
     updateEmail(email) {
