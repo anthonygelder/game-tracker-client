@@ -74,6 +74,11 @@ footer > p {
   color: white;
 }
 
+.error {
+  color: red;
+  font-weight: bolder;
+}
+
 @font-face {
   font-family: Mich;
   src: url(./fonts/Michegar.otf);

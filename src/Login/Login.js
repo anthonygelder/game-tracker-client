@@ -9,7 +9,8 @@ class Login extends Component {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: null
         }
     }
 
@@ -17,17 +18,17 @@ class Login extends Component {
         e.preventDefault()
         this.setState({ error: null })
         AuthApiService.postLogin({
-            user_email: this.state.email,
-            password: this.state.password
+                user_email: this.state.email,
+                password: this.state.password
             })
             .then(res => {
+                window.sessionStorage.setItem("userId",res.userId)
                 TokenService.saveAuthToken(res.authToken)
                 this.props.routeProps.history.push('/games')
             })
             .catch(res => {
-            this.setState({ error: res.error })
+                this.setState({ error: res.error })
         })
-        // this.props.routeProps.history.push('/games')
     }
 
     updateEmail(email) {
@@ -50,6 +51,7 @@ class Login extends Component {
                     <button type="submit">
                         Submit
                     </button>
+                    {this.state.error ? <p className="error">{this.state.error}</p> : ''}
                 </form>
             </>
         );

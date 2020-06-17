@@ -9,15 +9,25 @@ class Register extends Component {
         this.state = {
             email: '',
             name: '',
-            password: '',
-            confirmPassword: '',
+            password: 'Password22!',
+            confirmPassword: 'Password22!',
             error: null
         }
     }
 
     handleSubmit(e) {
-        e.preventDefault()
-        this.setState({ error: null })
+        e.preventDefault();
+        if (this.state.password !== this.state.confirmPassword) {
+            this.setState({error: "Passwords do not match."})
+        } else {
+            this.setState({
+                error: null
+            });
+            this.addUser()
+        }
+    }
+
+    addUser() {
         AuthApiService.postUser({
             user_name: this.state.name,
             password: this.state.password,
@@ -63,6 +73,7 @@ class Register extends Component {
                     <button type="submit">
                         Submit
                     </button>
+                    {this.state.error ? <p className="error">{this.state.error}</p> : ''}
                 </form>
             </>
         );

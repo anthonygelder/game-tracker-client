@@ -62,7 +62,8 @@ class AddGame extends Component {
       game: this.state.text,
       status: this.state.status,
       year: this.state.year, 
-      image: this.state.image
+      image: this.state.image,
+      user_id: window.sessionStorage.getItem("userId")
     }
     this.addGame(newGame)
   }

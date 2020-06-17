@@ -5,6 +5,7 @@ import './Header.css'
 
 class Header extends Component {
     handleLogoutClick = () => {
+        window.sessionStorage.removeItem("userId")
         TokenService.clearAuthToken()
     }
 
