@@ -16,6 +16,12 @@ class AddGame extends Component {
     }
   }
 
+  componentDidMount() {
+    if(!window.sessionStorage.getItem("userId")) {
+      this.props.routeProps.history.push('/')
+    }
+  }
+
   searchGames() {
     fetch(`https://rawg-video-games-database.p.rapidapi.com/games?search=${this.state.text}`, {
       method: 'GET',
@@ -112,7 +118,6 @@ class AddGame extends Component {
   }
 
   render() {
-
     return (
       <>
         <h2>Add Game</h2>

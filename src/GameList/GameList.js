@@ -20,7 +20,6 @@ class GameList extends Component {
       fetch(`${API_ENDPOINT}/games/${gameId}`, {
         method: 'DELETE',
         headers: {
-          // 'content-type': 'application/json',
           'authorization': `bearer ${TokenService.getAuthToken()}`
         },
       })
@@ -44,7 +43,8 @@ class GameList extends Component {
     fetch(`${API_ENDPOINT}/games`, {
       method: 'GET',
       headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+        'user_id': window.sessionStorage.getItem("userId")
       },
     })
     .then(response => response.json())
@@ -57,7 +57,11 @@ class GameList extends Component {
   }
 
   componentDidMount() {
-    this.getGames()
+    if(window.sessionStorage.getItem("userId")) {
+      this.getGames()
+    } else {
+      this.props.routeProps.history.push('/')
+    }
   }
 
   filterGames() {

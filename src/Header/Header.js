@@ -29,7 +29,6 @@ class Header extends Component {
                         Register
                     </button>
                 </Link>
-                {/* <Hyph /> */}
                 <Link to='/login'>
                     <button>
                         Login

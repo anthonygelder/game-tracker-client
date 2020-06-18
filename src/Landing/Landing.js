@@ -17,11 +17,16 @@ class Landing extends Component {
             <li>Track your progress.</li>
             <li>Rate game after completion.</li>
           </ul>
+          {window.sessionStorage.getItem("userId") ? 
           <Link to='/games'>
             <button>
               View Games
             </button>
-          </Link>
+          </Link> : <Link to='/login'>
+                      <button>
+                          Login
+                      </button>
+                    </Link>}
         </section>
       </>
     );
