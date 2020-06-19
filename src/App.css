@@ -14,7 +14,15 @@ h2 {
   margin: 0 auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 3rem;
+  font-size: 2rem;
+  -webkit-text-stroke: 1px black;
+  color: white;
+  text-shadow:
+      3px 3px 0 #000,
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+      1px 1px 0 #000;
 }
 
 main {
@@ -35,7 +43,7 @@ form, .addGame {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 90%;
+  width: 75%;
   align-self: center;
 }
 
@@ -78,6 +86,7 @@ footer > p {
   color: red;
   font-weight: bolder;
 }
+
 
 @font-face {
   font-family: Mich;

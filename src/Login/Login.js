@@ -22,6 +22,7 @@ class Login extends Component {
                 password: this.state.password
             })
             .then(res => {
+                window.sessionStorage.setItem("email",res.email)
                 window.sessionStorage.setItem("userId",res.userId)
                 TokenService.saveAuthToken(res.authToken)
                 this.props.routeProps.history.push('/games')

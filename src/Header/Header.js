@@ -6,12 +6,14 @@ import './Header.css'
 class Header extends Component {
     handleLogoutClick = () => {
         window.sessionStorage.removeItem("userId")
+        window.sessionStorage.removeItem("email")
         TokenService.clearAuthToken()
     }
 
     renderLogoutLink() {
         return (
-            <div className='Header__logged-in'>
+            <div className='email'>
+                <p>{window.sessionStorage.getItem("email")}</p>
                 <Link onClick={this.handleLogoutClick} to='/'>
                     <button>
                         Logout
@@ -23,7 +25,7 @@ class Header extends Component {
 
     renderLoginLink() {
         return (
-            <div className='Header__not-logged-in buttons'>
+            <div className='buttons'>
                 <Link to='/register'>
                     <button>
                         Register
@@ -44,6 +46,7 @@ class Header extends Component {
                     <h1>Game Tracker</h1>
                 </Link>
                 <div>
+                    
                     {TokenService.hasAuthToken()
                     ? this.renderLogoutLink()
                     : this.renderLoginLink()}
