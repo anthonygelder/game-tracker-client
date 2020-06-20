@@ -98,7 +98,6 @@ class GameList extends Component {
         games = this.state.games
         break
       default:
-  
         games = this.filterGames()
         break
     }
@@ -129,7 +128,7 @@ class GameList extends Component {
         <section>
           <h2>Your Games</h2>
           <Link to='/addGame'>
-            <button>
+            <button className="add">
               Add Game
             </button>    
           </Link>
