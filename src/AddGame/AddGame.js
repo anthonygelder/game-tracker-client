@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Game from '../Game/Game'
+import {Link} from 'react-router-dom'
 import TokenService from '../services/token-service'
 import './AddGame.css'
 const { API_ENDPOINT } = require('../config')
@@ -124,13 +125,11 @@ class AddGame extends Component {
         <form className="addEntry" onSubmit={e => this.handleSubmit(e)}>
           <label htmlFor="game">Game:</label>
           <input required type="text" id="game" value={this.state.text} onChange={e => this.onTextChanged(e.target.value)} />
-          {this.state.suggestions.length === 0 ? <button type="submit">Search</button> : <button onClick={this.clear}>Clear</button>}
-          <div className="slide">
-            <div className="games">
-              {this.renderSuggestions()}
-            </div>
-          </div>
+          {this.state.suggestions.length === 0 ? <button type="submit">Search</button> : <button className="delete" onClick={this.clear}>Clear</button>}
         </form>
+        <div className="games">
+          {this.renderSuggestions()}
+        </div>
         <div className="addGame">
           <label htmlFor="status">Status:</label>
           <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
@@ -145,6 +144,9 @@ class AddGame extends Component {
             Add
           </button>
         </div>
+        <Link to='/games'>
+          <button>Go Back</button>    
+        </Link>
       </>
     );
   }

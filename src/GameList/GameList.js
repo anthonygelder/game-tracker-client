@@ -10,7 +10,8 @@ class GameList extends Component {
     super(props)
     this.state = {
       games: [],
-      filteredGames: []
+      filteredGames: [],
+      active: 'Playing'
     }
   }
   
@@ -90,15 +91,19 @@ class GameList extends Component {
     switch (status) {
       case "Complete":
         games = this.filterCompleteGames()
+        this.setState({active:"Complete"})
         break
       case "Backlog":
         games = this.filterBackGames()
+        this.setState({active:"Backlog"})
         break
       case "All":
         games = this.state.games
+        this.setState({active:"All"})
         break
       default:
         games = this.filterGames()
+        this.setState({active:"Playing"})
         break
     }
     this.updateFilter(games)
@@ -128,15 +133,13 @@ class GameList extends Component {
         <section>
           <h2>Your Games</h2>
           <Link to='/addGame'>
-            <button className="add">
-              Add Game
-            </button>    
+            <button>Add Game</button>    
           </Link>
-          <div>
-            <button value="All" onClick={e => this.selectFilter(e.target.value)}>All</button>
-            <button value="Complete" onClick={e => this.selectFilter(e.target.value)}>Complete</button>
-            <button value="Backlog" onClick={e => this.selectFilter(e.target.value)}>Backlog</button>
-            <button onClick={e => this.selectFilter()}>Currently Playing</button>
+          <div className='buttons'>
+            <button className={this.state.active === 'All' ? 'active' : ''} value="All" onClick={e => this.selectFilter(e.target.value)}>All Games</button>
+            <button className={this.state.active === 'Complete' ? 'active' : ''} value="Complete" onClick={e => this.selectFilter(e.target.value)}>Complete</button>
+            <button className={this.state.active === 'Backlog' ? 'active' : ''} value="Backlog" onClick={e => this.selectFilter(e.target.value)}>Backlog</button>
+            <button className={this.state.active === 'Playing' ? 'active' : ''} value="Playing" onClick={e => this.selectFilter()}>Currently Playing</button>
           </div>
         </section>
         <div className="games">

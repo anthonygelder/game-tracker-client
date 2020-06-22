@@ -5,12 +5,12 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     padding: 2px;
     border-radius: 4px;
 }
 
-.cardContainer > button {
+.delete {
     width: 100%;
     background-color: rgb(173, 0, 0);
     color: white;
