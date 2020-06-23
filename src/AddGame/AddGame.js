@@ -135,9 +135,9 @@ class AddGame extends Component {
           <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
             <option value="" disabled selected>Select a status</option>
             <option value="Backlog">Backlog</option>
-            <option value="Just Started">Just started</option>
-            <option value="In Progress">In progress</option>
-            <option value="Almost Done">Almost done</option>
+            <option value="Just Started">Just Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Almost Done">Almost Done</option>
             <option value="Complete">Complete</option>
           </select>
           <button onClick={e => this.submitGame(e)}>

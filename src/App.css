@@ -74,14 +74,12 @@ section {
   background-color: rgb(159, 208, 252);
 }
 
-button {
+input, select, button {
+  border: solid 1px black;
+  margin-bottom: 10px;
   border-radius: 5px;
   padding: 3px 5px;
-  border: solid 1px black;
-}
-
-input, select {
-  margin-bottom: 10px;
+  box-shadow: 2px 2px rgba(184, 123, 73, 0.767);
 }
 
 footer {
@@ -104,6 +102,15 @@ footer > p {
   font-weight: bolder;
 }
 
+@media only screen and (min-width: 520px) {
+  h2 {
+      font-size: 3rem;
+  }
+
+  label {
+    font-size: 22px;
+  }
+}
 
 @font-face {
   font-family: Mich;
