@@ -24,7 +24,7 @@ class App extends Component {
       <>
         <div className="container">
           <div className="header">
-            <Route path='/' render={() => <Header />} />
+            <Route path={["/games","/addGame","/games/:entry_id","/register","/login"]} render={() => <Header />}  />
           </div>
           <main className='App'>
             <Route exact path="/" render={() => <Landing />} />
