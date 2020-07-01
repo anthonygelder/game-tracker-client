@@ -1,3 +1,8 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
 .section {
     background-image: 
         linear-gradient(
@@ -6,14 +11,11 @@
         ),
         url(../img/Ink.jpg);
     background-size: 590px;
+    margin-bottom: 40px;
 }
 
-/* .section {
-    width: 80%;
-} */
-
 p {
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 ul, li {
@@ -25,4 +27,9 @@ ul, li {
 
 .landing {
     font-size: 3rem;
+}
+
+.landingBottom {
+    display: flex;
+    flex-direction: column;
 }

@@ -23,7 +23,7 @@ class Landing extends Component {
 
   render() {
     return (
-      <>
+      <div className="main">
         <section className="section">
           <h1 className='landing'>Game Tracker</h1>
           <div>
@@ -32,10 +32,12 @@ class Landing extends Component {
           <div className="background"></div>
           <ul>
             <li>Add games to your library.</li>
-            <li>Track your progress along the way.</li>
+            <li>Update your progress along the way.</li>
             <li>See how many games you have completed.</li>
           </ul>
           <h2>Get started below.</h2>
+        </section>
+        <div className="landingBottom">
           <p>Create a new account or use the test account.</p>
           <p>Test User: test@user.com</p>
           <p>Test Password: Password22!</p>
@@ -46,8 +48,8 @@ class Landing extends Component {
               View Games
             </button>
           </Link> : this.renderLoginLink()}
-        </section>
-      </>
+        </div>
+      </div>
     );
   }
 }

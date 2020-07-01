@@ -112,7 +112,7 @@ class Game extends Component {
     if(this.props.saved) {
       return (
         <>
-          <div className="cardContainer" >
+          <div className="cardContainer" id="savedGame">
               <div className='card'>
                   <img src={game.image} alt={'game'} className='cardImg' />
               </div>

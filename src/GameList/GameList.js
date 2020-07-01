@@ -133,7 +133,7 @@ class GameList extends Component {
         <section>
           <h2>Your Games</h2>
           <Link to='/addGame'>
-            <button>Add Game</button>    
+            <button className="add">Add Game</button>    
           </Link>
           <div className='buttons'>
             <button className={this.state.active === 'All' ? 'active' : ''} value="All" onClick={e => this.selectFilter(e.target.value)}>All Games</button>

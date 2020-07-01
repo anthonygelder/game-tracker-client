@@ -140,7 +140,7 @@ class AddGame extends Component {
             <option value="Almost Done">Almost Done</option>
             <option value="Complete">Complete</option>
           </select>
-          <button onClick={e => this.submitGame(e)}>
+          <button className="add" onClick={e => this.submitGame(e)}>
             Add
           </button>
         </div>
