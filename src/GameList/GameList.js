@@ -41,6 +41,7 @@ class GameList extends Component {
   }
   
   getGames() {
+    // fetch(`https://true-canoe-22005.herokuapp.com/api/games`, {
     fetch(`${API_ENDPOINT}/games`, {
       method: 'GET',
       headers: {
