@@ -9,6 +9,7 @@ class Game extends Component {
     this.state = {
       status: this.props.game.status,
       options: ``,
+      ratings: null,
       rating: 1,
       statusFlag: true
     }
@@ -80,6 +81,12 @@ class Game extends Component {
       )
   }
 
+  changeRating() {
+    this.setState({
+      ratings: this.renderRating(),
+    })
+  }
+
   displaySelect() {
     const options = ["Backlog", "Just Started", "In Progress", "Almost Done", "Complete"]
     const { status } = this.props.game
@@ -122,8 +129,14 @@ class Game extends Component {
               </div>
               {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
-              {/* {this.props.rating ? <h6>{this.props.rating}</h6> : ''} */}
+
+              {this.props.rating ? <h6>{this.props.rating}</h6> : ''}
+              
+              {game.status === "Complete" ? <button onClick={() => {this.changeRating()}}> Rate game </button> : null}
+              {this.state.ratings}
               {/* {game.status === "Complete" ? this.renderRating() : ''} */}
+
+
               <button className="delete" onClick={() => {this.props.deleteGame(game.id)}}>
                 Delete
               </button>

@@ -28,7 +28,7 @@ class AddGame extends Component {
       method: 'GET',
       headers: {
           "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-	        "x-rapidapi-key": process.env.GAME_SEARCH_API_KEY
+	        "x-rapidapi-key": "456efb0483msh86ebfface36e894p1cb243jsn4beee219a6e0"
       },
     })
     .then((response) => {
@@ -40,7 +40,8 @@ class AddGame extends Component {
   }
 
   addGame(game) {
-    fetch(`${API_ENDPOINT}/games/`, {
+    // fetch(`${API_ENDPOINT}/games/`, {
+    fetch(`https://young-river-73543.herokuapp.com/api/games`, {
         method: 'POST',
         body: JSON.stringify(game),
         headers: {
