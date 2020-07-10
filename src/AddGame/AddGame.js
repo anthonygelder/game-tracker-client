@@ -61,6 +61,7 @@ class AddGame extends Component {
             this.props.routeProps.history.push('/games')
         })
         .catch(error => {
+          console.log(error)
             console.error(error)
     })
 }

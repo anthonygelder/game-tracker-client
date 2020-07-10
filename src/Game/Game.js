@@ -10,7 +10,7 @@ class Game extends Component {
       status: this.props.game.status,
       options: ``,
       ratings: null,
-      rating: 1,
+      rating: this.props.rating || null,
       statusFlag: true
     }
   }
@@ -69,7 +69,7 @@ class Game extends Component {
   renderRating() {
     return (
       <>
-        <select  id='rating' onChange={e => this.onRatingChange(e.target.value)}>
+        <select id='rating' onChange={e => this.onRatingChange(e.target.value)}>
           <option value='1'>1</option>
           <option value='2'>2</option>
           <option value='3'>3</option>
@@ -84,6 +84,7 @@ class Game extends Component {
   changeRating() {
     this.setState({
       ratings: this.renderRating(),
+      rating: 1
     })
   }
 
@@ -116,6 +117,7 @@ class Game extends Component {
 
   render() {
     const { game } = this.props
+    console.log(game)
     if(this.props.saved) {
       return (
         <>
@@ -130,13 +132,10 @@ class Game extends Component {
               {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
               {this.state.options}
 
-              {this.props.rating ? <h6>{this.props.rating}</h6> : ''}
-              
-              {game.status === "Complete" ? <button onClick={() => {this.changeRating()}}> Rate game </button> : null}
+
+              { !game.rating && game.status === "Complete" ? <button onClick={() => {this.changeRating()}}> Rate game </button> : <h4>{game.rating}</h4> }
+
               {this.state.ratings}
-              {/* {game.status === "Complete" ? this.renderRating() : ''} */}
-
-
               <button className="delete" onClick={() => {this.props.deleteGame(game.id)}}>
                 Delete
               </button>
