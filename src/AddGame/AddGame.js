@@ -40,8 +40,8 @@ class AddGame extends Component {
   }
 
   addGame(game) {
-    // fetch(`${API_ENDPOINT}/games/`, {
-    fetch(`https://young-river-73543.herokuapp.com/api/games`, {
+    fetch(`${API_ENDPOINT}/games/`, {
+    // fetch(`https://young-river-73543.herokuapp.com/api/games`, {
         method: 'POST',
         body: JSON.stringify(game),
         headers: {
