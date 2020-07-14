@@ -41,7 +41,6 @@ class GameList extends Component {
   }
   
   getGames() {
-    // fetch(`https://young-river-73543.herokuapp.com/api/games`, {
     fetch(`${API_ENDPOINT}/games`, {
       method: 'GET',
       headers: {
@@ -51,6 +50,7 @@ class GameList extends Component {
     })
     .then(response => response.json())
     .then(data => {
+      console.log(data)
       this.setState({
         games: data
       })
@@ -115,9 +115,12 @@ class GameList extends Component {
     const { filteredGames } = this.state
     if (filteredGames.length === 0) {
       return (
-        <>
-          <p>No Games.</p>
-        </>
+        <section>
+          <p>No Games. Add a new game!</p>
+          <Link to='/addGame'>
+            <button className="add">Add Game</button>    
+          </Link>
+        </section>
       )
     } else {
       return (

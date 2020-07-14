@@ -12,8 +12,8 @@ class Header extends Component {
 
     renderLogoutLink() {
         return (
-            <div className='email'>
-                <p>{window.sessionStorage.getItem("email")}</p>
+            <div>
+                {/* <p>{window.sessionStorage.getItem("email")}</p> */}
                 <Link onClick={this.handleLogoutClick} to='/'>
                     <button>
                         Logout
@@ -25,7 +25,7 @@ class Header extends Component {
 
     renderLoginLink() {
         return (
-            <div className='buttons'>
+            <div >
                 <Link to='/register'>
                     <button>
                         Register

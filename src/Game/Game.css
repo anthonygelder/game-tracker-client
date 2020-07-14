@@ -1,5 +1,6 @@
 .cardContainer {
     width: 45%;
+    background-color: rgba(53, 127, 211, 0.473);
     border: solid 2px rgb(0, 0, 0);
     display: flex;
     flex-direction: column;
@@ -17,6 +18,11 @@
     font-weight: bolder;
 }
 
+.delete:hover {
+    background-color: rgb(219, 132, 0);
+    color: rgb(0, 0, 0);
+}
+
 .cardContainer:hover {
     box-shadow: 0 8px 6px 0 rgb(207, 126, 60);
     cursor: pointer;
@@ -24,7 +30,6 @@
 
 #savedGame:hover {
     box-shadow: 0 0px 0px 0 rgba(255, 255, 255, 0);
-
     cursor: default;
 }
 
@@ -49,6 +54,19 @@
     height: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.status:hover {
+    background-color: rgb(63, 91, 184);
+    padding: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#status > option, #status {
+    background-color: rgb(63, 91, 184);
+    padding: 0 5px;
+    border-radius: 5px;
 }
 
 

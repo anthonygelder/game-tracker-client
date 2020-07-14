@@ -40,7 +40,7 @@ class Landing extends Component {
         <div className="landingBottom">
           <p>Create a new account or use the test account.</p>
           <p>Test User: test@user.com</p>
-          <p>Test Password: Password22!</p>
+          <p>Test Password: Password1!</p>
         
           {window.sessionStorage.getItem("userId") ? 
           <Link to='/games'>

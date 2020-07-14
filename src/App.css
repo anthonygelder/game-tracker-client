@@ -85,7 +85,6 @@ button:hover {
 
 input, select, button {
   border: solid 1px black;
-  margin-bottom: 10px;
   border-radius: 5px;
   padding: 3px 5px;
   box-shadow: 2px 2px rgba(184, 123, 73, 0.767);

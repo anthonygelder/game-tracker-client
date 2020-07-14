@@ -88,6 +88,10 @@ class Game extends Component {
     })
   }
 
+  renderScore(rating) {
+    return rating ? <p>{rating} / 5</p> : <p></p> 
+  }
+
   displaySelect() {
     const options = ["Backlog", "Just Started", "In Progress", "Almost Done", "Complete"]
     const { status } = this.props.game
@@ -117,24 +121,20 @@ class Game extends Component {
 
   render() {
     const { game } = this.props
-    console.log(game)
     if(this.props.saved) {
       return (
         <>
           <div className="cardContainer" id="savedGame">
               <div className='card'>
-                  <img src={game.image} alt={'game'} className='cardImg' />
+                  <img src={game.image} alt={`${game.game} game screenshot or cover art.`} className='cardImg' />
               </div>
               <div>
                 <h3><b>{game.game}</b></h3>
                 <p>{game.year}</p>
               </div>
-              {this.state.statusFlag ? <h6><b onClick={() => {this.changeStatus()}}> {game.status} </b></h6> : null}
+              {this.state.statusFlag ? <p className="status"><b onClick={() => {this.changeStatus()}}> {game.status} </b></p> : null}
               {this.state.options}
-
-
-              { !game.rating && game.status === "Complete" ? <button onClick={() => {this.changeRating()}}> Rate game </button> : <h4>{game.rating}</h4> }
-
+              { !game.rating && game.status === "Complete" ? <button onClick={() => {this.changeRating()}}> Rate game </button> : this.renderScore(game.rating) }
               {this.state.ratings}
               <button className="delete" onClick={() => {this.props.deleteGame(game.id)}}>
                 Delete
@@ -148,7 +148,7 @@ class Game extends Component {
         <>
           <div className="cardContainer" onClick={() => {this.props.selectGame(game)}}>
               <div className='card'>
-                  <img src={game.background_image} alt={'game'} className='cardImg' />
+                  <img src={game.background_image} alt={`${game.name} game screenshot or cover art.`} className='cardImg' />
               </div>
               <h6><b>{game.name}</b></h6>
               <p>{date}</p>
