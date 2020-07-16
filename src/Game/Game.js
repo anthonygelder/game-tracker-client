@@ -88,6 +88,10 @@ class Game extends Component {
     })
   }
 
+  rateButton() {
+    
+  }
+
   renderScore(rating) {
     return rating ? <p>{rating} / 5</p> : <p></p> 
   }

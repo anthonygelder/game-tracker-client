@@ -29,12 +29,24 @@ class Landing extends Component {
           <div>
             <h2>Welcome to your personal video game tracker.</h2>
           </div>
-          <div className="background"></div>
-          <ul>
+          {/* <div className="background"></div> */}
+          {/* <ul>
             <li>Add games to your library.</li>
             <li>Update your progress along the way.</li>
             <li>See how many games you have completed.</li>
-          </ul>
+          </ul> */}
+          <div>
+            <p className="lightText">Add games to your library. Keep track of the games you are currently playing.</p>
+            <div className="landingImg">
+              <img src={ require('../img/1.png')} alt='screenshot of app'/>
+              <img src={ require('../img/2.png')} alt='screenshot of app'/>
+            </div>
+            <p className="lightText">Update your games progress while you play. Give completed games a rating.</p>
+            <div className="landingImg">
+              <img src={ require('../img/3.png')} alt='screenshot of app'/>
+              <img src={ require('../img/4.png')} alt='screenshot of app'/>
+            </div>
+          </div>
           <h2>Get started below.</h2>
         </section>
         <div className="landingBottom">
