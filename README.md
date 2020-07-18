@@ -14,5 +14,4 @@ There are so many video games out these days, it is getting harder to keep track
 ![Detail Screen](src/img/screenshot3.png)
 
 ### Tech
-Front End: React
-Back End: Node, Express, Postgres
+Front End: React - Back End: Node, Express, Postgres
