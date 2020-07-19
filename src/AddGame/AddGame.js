@@ -133,7 +133,7 @@ class AddGame extends Component {
         </div>
         <div className="addGame">
           <label htmlFor="status">Status:</label>
-          <select id="status" onChange={e => this.onStatusChanged(e.target.value)} >
+          <select onChange={e => this.onStatusChanged(e.target.value)} >
             <option value="" disabled selected>Select a status</option>
             <option value="Backlog">Backlog</option>
             <option value="Just Started">Just Started</option>
