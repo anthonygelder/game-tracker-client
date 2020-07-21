@@ -50,7 +50,6 @@ class GameList extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data)
       this.setState({
         games: data
       })
