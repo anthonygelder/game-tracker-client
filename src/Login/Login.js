@@ -52,7 +52,7 @@ class Login extends Component {
                     <button type="submit">
                         Submit
                     </button>
-                    {this.state.error ? <p className="error">{this.state.error}</p> : ''}
+                    {this.state.error ? <p className="error">{this.state.error.message}</p> : ''}
                 </form>
             </>
         );

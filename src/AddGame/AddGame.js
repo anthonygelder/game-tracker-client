@@ -18,27 +18,27 @@ class AddGame extends Component {
   }
 
   componentDidMount() {
+    // checking to see if user is logged in
     if(!window.sessionStorage.getItem("userId")) {
       this.props.routeProps.history.push('/')
     }
   }
 
+  // sending request to games database api to find games based on search term
   searchGames() {
-    fetch(`https://rawg-video-games-database.p.rapidapi.com/games?search=${this.state.text}`, {
-      method: 'GET',
-      headers: {
-          "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
-	        "x-rapidapi-key": "456efb0483msh86ebfface36e894p1cb243jsn4beee219a6e0"
-      },
-    })
+    // fetch(`https://rawg-video-games-database.p.rapidapi.com/games?search=${this.state.text}`, {
+    // fetch(`https://api.rawg.io/api/games?key=a638b5c8919f443c9cce20527693b2cd?search=${this.state.text}`, {
+    fetch(`${API_ENDPOINT}/games/searchGames`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      this.setState({ suggestions: data.results })
+      console.log(data)
+      // this.setState({ suggestions: data.results })
     })
   }
 
+  // sending game to database
   addGame(game) {
     fetch(`${API_ENDPOINT}/games`, {
         method: 'POST',
@@ -60,11 +60,11 @@ class AddGame extends Component {
             this.props.routeProps.history.push('/games')
         })
         .catch(error => {
-          console.log(error)
             console.error(error)
     })
-}
+  }
 
+  // submitting game to add game
   submitGame() {
     const newGame = {
       game: this.state.text,
@@ -84,11 +84,13 @@ class AddGame extends Component {
     this.setState({status: status})
   }
 
+  // handle game search form submit
   handleSubmit(e) {
     e.preventDefault();
     this.searchGames()
-}
+  }
 
+  // select game
   selectGame = (game) => {
     const yearInt = parseInt(game.released.slice(0,-6))
     this.setState({
@@ -99,6 +101,7 @@ class AddGame extends Component {
     })
   }
 
+  // clear search
   clear = () => {
     this.setState({
       text: '',
@@ -106,6 +109,7 @@ class AddGame extends Component {
     })
   }
 
+  // render game suggestions based on top game search results
   renderSuggestions() {
     const { suggestions } = this.state
     if (suggestions.length === 0) {

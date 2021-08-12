@@ -40,6 +40,7 @@ class GameList extends Component {
     }
   }
   
+  // get games from database by user id
   getGames() {
     fetch(`${API_ENDPOINT}/games`, {
       method: 'GET',
@@ -58,6 +59,7 @@ class GameList extends Component {
   }
 
   componentDidMount() {
+    // if user logged in get games base on user id
     if(window.sessionStorage.getItem("userId")) {
       this.getGames()
     } else {
@@ -65,27 +67,32 @@ class GameList extends Component {
     }
   }
 
+  // filter in progress games
   filterGames() {
     const { games } = this.state
     return games.filter(game => game.status === "Just Started" || game.status === "In Progress" || game.status === "Almost Done")
   }
 
+  // filter backlog games
   filterBackGames() {
     const { games } = this.state
     return games.filter(game => game.status === "Backlog")
   }
-
+ 
+  // filter completed games
   filterCompleteGames() {
     const { games } = this.state
     return games.filter(game => game.status === "Complete")
   }
 
+  // update filter by
   updateFilter(games) {
     this.setState({
       filteredGames: games
     })
   }
-
+  
+  // switch filter
   selectFilter(status) {
     let { games } = this.state
     switch (status) {
@@ -110,6 +117,7 @@ class GameList extends Component {
     this.renderGames()
   }
   
+  // render saved games
   renderGames() {
     const { filteredGames } = this.state
     if (filteredGames.length === 0) {
