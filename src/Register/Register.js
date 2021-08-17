@@ -37,7 +37,11 @@ class Register extends Component {
             this.props.routeProps.history.push('/login')
         })
         .catch(res => {
-            this.setState({ error: res.error })
+            if(res.error.message) {
+                this.setState({ error: res.error.message })
+            } else {
+                this.setState({ error: res.error })
+            }
         })
     }
 
@@ -61,6 +65,7 @@ class Register extends Component {
         return (
             <>
                 <h2>Register</h2>
+                {this.state.error ? <p className="error">{this.state.error}</p> : ''}
                 <form onSubmit={e => this.handleSubmit(e)} > 
                     <label htmlFor="email">Email:</label>
                     <input required type='text' name="email" id="email" value={this.state.email} onChange={e => this.updateEmail(e.target.value)} />
@@ -73,7 +78,6 @@ class Register extends Component {
                     <button type="submit">
                         Submit
                     </button>
-                    {this.state.error ? <p className="error">{this.state.error}</p> : ''}
                 </form>
             </>
         );

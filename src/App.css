@@ -95,6 +95,7 @@ footer {
   background-size: 80px;
   height: 30px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
   bottom: 0;
@@ -102,6 +103,11 @@ footer {
 }
 
 footer > p {
+  color: white;
+}
+
+footer > a {
+  text-decoration: none;
   color: white;
 }
 

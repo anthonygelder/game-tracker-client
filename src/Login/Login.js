@@ -28,6 +28,7 @@ class Login extends Component {
                 this.props.routeProps.history.push('/games')
             })
             .catch(res => {
+                console.log(res.error)
                 this.setState({ error: res.error })
         })
     }
@@ -44,6 +45,7 @@ class Login extends Component {
         return (
             <>
                 <h2>Login</h2>
+                {this.state.error ? <p className="error">{this.state.error}</p> : ''}
                 <form onSubmit={e => this.handleSubmit(e)} > 
                     <label htmlFor="email">Email:</label>
                     <input required type='text' name="email" id="email" value={this.state.email} onChange={e => this.updateEmail(e.target.value)} />
@@ -52,7 +54,6 @@ class Login extends Component {
                     <button type="submit">
                         Submit
                     </button>
-                    {this.state.error ? <p className="error">{this.state.error.message}</p> : ''}
                 </form>
             </>
         );

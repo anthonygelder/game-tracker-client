@@ -11,7 +11,7 @@ class AddGame extends Component {
     this.state = {
       suggestions: [],
       text: '',
-      status: '',
+      status: 'Backlog',
       year: '',
       image: ''
     }
@@ -26,15 +26,17 @@ class AddGame extends Component {
 
   // sending request to games database api to find games based on search term
   searchGames() {
-    // fetch(`https://rawg-video-games-database.p.rapidapi.com/games?search=${this.state.text}`, {
-    // fetch(`https://api.rawg.io/api/games?key=a638b5c8919f443c9cce20527693b2cd?search=${this.state.text}`, {
-    fetch(`${API_ENDPOINT}/games/searchGames`)
+    fetch(`${API_ENDPOINT}/games/searchGames`, {
+      method: 'GET',
+      headers: {
+        'game' : this.state.text
+      }
+    })
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log(data)
-      // this.setState({ suggestions: data.results })
+      this.setState({ suggestions: data})
     })
   }
 
@@ -50,11 +52,11 @@ class AddGame extends Component {
     })
     .then(res => {
         if (!res.ok) {
-            return res.json().then(error => {
-                throw error
-            })
-            }
-            return res.json()
+          return res.json().then(error => {
+              throw error
+          })
+        }
+        return res.json()
         })
         .then(data => {
             this.props.routeProps.history.push('/games')
@@ -73,6 +75,7 @@ class AddGame extends Component {
       image: this.state.image,
       user_id: window.sessionStorage.getItem("userId")
     }
+    
     this.addGame(newGame)
   }
 

@@ -28,7 +28,8 @@ class App extends Component {
             <Route exact path="/login" render={(routeProps) => <Login routeProps={routeProps} />} />
           </main>
           <footer>  
-            <p>Game Tracker © 2020</p>
+            <p>Game Tracker © 2021</p> 
+            <a href="https://rawg.io/">Game data provided by RAWG API.</a>
           </footer>
         </div>
       </>
