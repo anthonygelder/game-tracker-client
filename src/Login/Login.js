@@ -28,8 +28,11 @@ class Login extends Component {
                 this.props.routeProps.history.push('/games')
             })
             .catch(res => {
-                console.log(res.error)
-                this.setState({ error: res.error })
+                if(res.error.message) {
+                    this.setState({ error: res.error.message })
+                } else {
+                    this.setState({ error: res.error })
+                }
         })
     }
 
